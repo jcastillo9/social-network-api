@@ -25,7 +25,7 @@ As a social media startup I want an API for my social network that uses a NoSQL 
 * API
 
 # Installation
-Run using the github URL: https://jcastillo9.github.io/portfolio-v3-/
+Link to Walkthrough Video: https://jcastillo9.github.io/portfolio-v3-/
 
 # Screenshot
 Desktop
