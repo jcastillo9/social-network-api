@@ -15,7 +15,7 @@ const thoughtSchema = new Schema(
             default: Date.now, 
             get:(createDate) => Intl.DateTimeFormat('en-US').format(createDate)
         },
-        userName: {
+        username: {
             type: String,
             required: true
         },
