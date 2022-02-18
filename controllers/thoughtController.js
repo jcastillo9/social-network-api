@@ -81,11 +81,11 @@ module.exports = {
         .catch((err) => res.status(500).json(err));
     },
 
-    // adds friend to user's friend list
-    addFriend(req,res) {
+    // adds reaction to thoughts 
+    addReaction(req,res) {
         Thought.findOneAndUpdate(
             { _id: req.params.thoughtId },
-            { $addToSet: { friends: req.body } },
+            { $addToSet: { reactions : req.body } },
             { runValidators: true, new: true }
         )
         .then((thought) =>
@@ -97,7 +97,7 @@ module.exports = {
     },
 
     // remove a friend from user list by ID
-    removeFriend(req, res) {
+    removeReaction(req, res) {
         Thought.findByIdAndUpdate(
             { _id: req.params.thoughtId },
             { $pull: { reactions: { responseId: req.params.reactionId}  } }, 
