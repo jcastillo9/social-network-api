@@ -23,6 +23,7 @@ As a social media startup I want an API for my social network that uses a NoSQL 
 * Mongoose
 * Express
 * API
+* Javascript
 
 # Installation
 Link to Walkthrough Video: https://jcastillo9.github.io/portfolio-v3-/
