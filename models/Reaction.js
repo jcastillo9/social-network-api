@@ -18,7 +18,7 @@ const reactionSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: Date.prototype.getDate()
+      get:(createDate) => Intl.DateTimeFormat('en-US').format(createDate)
     },
   },
   {
