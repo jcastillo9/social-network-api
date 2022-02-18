@@ -1,4 +1,5 @@
 const { Thought, User } = require('../models');
+const { rawListeners } = require('../models/User');
 
 module.exports = {
     // get all thoughts
@@ -74,9 +75,9 @@ module.exports = {
         )
         .then((user) =>
         !user
-        ? res.status(404).json({ message: 'Thought created but no user with that ID',
+        ? res.status(404).json({ message: 'Thought deleted but no user with that ID',
         })
-        : res.json({ message: 'Thoguth successfully deleted.'})
+        : res.json({ message: 'Thought successfully deleted.'})
         )
         .catch((err) => res.status(500).json(err));
     },
@@ -85,28 +86,30 @@ module.exports = {
     addReaction(req,res) {
         Thought.findOneAndUpdate(
             { _id: req.params.thoughtId },
-            { $addToSet: { reactions : req.body } },
+            { $set: { reactions : req.body } },
             { runValidators: true, new: true }
         )
-        .then((thought) =>
-        !thought
+        .populate({ path: 'reactions', select: '-__v' })
+        .select('-__v')
+        .then((thoughts) =>
+        !thoughts
         ? res.status(404).json({ message: 'No thought with this ID'})
-        : res.json(thought)
+        : res.json(thoughts)
         )
         .catch((err) => res.status(500).json(err));
     },
 
-    // remove a friend from user list by ID
+    // remove a reaction
     removeReaction(req, res) {
         Thought.findByIdAndUpdate(
             { _id: req.params.thoughtId },
-            { $pull: { reactions: { responseId: req.params.reactionId}  } }, 
-            { runValidators: true, new: true }
+            { $set: { reactions: req.body  } }, 
+            { new: true }
         )
-        .then((thought) => 
-        !thought
+        .then((thoughts) => 
+        !thoughts
         ? res.status(400).json({ message: 'No thought with that ID'} )
-        : res.json(thought)
+        : res.json(thoughts)
         )
         .catch((err) => res.status(500).json(err));
     },
