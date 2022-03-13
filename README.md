@@ -26,15 +26,12 @@ As a social media startup I want an API for my social network that uses a NoSQL 
 * Javascript
 
 # Installation
-Link to Walkthrough Video: https://jcastillo9.github.io/portfolio-v3-/
+Link to Walkthrough Video: https://drive.google.com/file/d/1BiQrtnUvLJTvW2Myv_7OmFN5SHOtB59I/view
 
 # Screenshot
 Desktop
-<img src="assets/images/portfolio_landingpage.png"/>
-<img src="assets/images/portfolio_projectspage.png"/>
+<img src="assets/images/screenshot.png"/>
 
-Mobile
-<img src="assets/images/mobile.png"/>
 
 ## Credits
  
