@@ -6,25 +6,39 @@ const userSchema = new Schema(
             type: String,
             unique: true,
             required: true,
-            trim: true
+            trim: true,
+            max_length: 25,
         },
+
         email: {
             type: String,
             required: true,
             unique: true,
-            match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/ ,'Please enter a valid email.']
+            match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/, 'Please enter a valid email.']
         },
-        thoughts: [{ type: Schema.Types.ObjectId, ref: 'thought' }],
-        friends: [{ type: Schema.Types.ObjectId, ref: 'user' }]
+        thoughts: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Thought',
+            },
+        ],
+        friends: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'User',
+            },
+        ],
     },
     {
         // Mongoose supports two Schema options to transform Objects after querying MongoDb: toJSON and toObject.
         // Here we are indicating that we want virtuals to be included with our response, overriding the default behavior
         toJSON: {
-          virtuals: true,
+            virtuals: true,
+            getters: true,
+
         },
         id: false,
-      }
+    }
 );
 
 // Create a virtual property `friendCount` that gets the length of user's friends

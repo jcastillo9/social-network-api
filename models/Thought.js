@@ -17,13 +17,15 @@ const thoughtSchema = new Schema(
         },
         username: {
             type: String,
-            required: true
+            required: true,
+            ref: 'User',
         },
         reactions: [Reaction],
     },
     {
         toJSON: {
           virtuals: true,
+          getters: true,
         },
         id: false,
       }
